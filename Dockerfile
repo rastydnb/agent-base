@@ -30,7 +30,7 @@ RUN apt-get update && \
     curl -sL https://github.com/rancher/weave/releases/download/r-v0.0.4/r > /usr/bin/r && \
     chmod +x /usr/bin/r && \
 
-    curl -ks https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | sudo bash && \
+    curl -ks https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | bash && \
     apt-get install docker-hypriot=1.10.3-1 && \
     sh -c 'usermod -aG docker $SUDO_USER' && \
     systemctl enable docker.service && \
