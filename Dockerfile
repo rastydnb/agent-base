@@ -31,9 +31,9 @@ RUN apt-get update && \
     chmod +x /usr/bin/r && \
 
     curl -ks https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | sudo bash && \
-    sudo apt-get install docker-hypriot=1.10.3-1 && \
-    sudo sh -c 'usermod -aG docker $SUDO_USER' && \
-    sudo systemctl enable docker.service && \
+    apt-get install docker-hypriot=1.10.3-1 && \
+    sh -c 'usermod -aG docker $SUDO_USER' && \
+    systemctl enable docker.service && \
     chmod +x /usr/bin/docker && \
 
     rm /var/run && \
