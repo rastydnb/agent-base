@@ -42,4 +42,7 @@ RUN apt-get update && \
     curl -sLf https://raw.githubusercontent.com/rancher/rancher/${SSL_SCRIPT_COMMIT}/server/bin/update-rancher-ssl > /usr/bin/update-rancher-ssl && \
     chmod +x /usr/bin/update-rancher-ssl
 
+RUN apt-get install docker-hypriot
+
+
 ENTRYPOINT ["/rancher-entrypoint.sh"]
