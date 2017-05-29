@@ -16,6 +16,7 @@ RUN apt-get update && \
         jq \
         kmod \
         openssl \
+        git \
         psmisc \
         python2.7 \
         tcpdump \
@@ -29,8 +30,13 @@ RUN apt-get update && \
     chmod +x /usr/bin/share-mnt && \
     curl -sL https://github.com/rancher/weave/releases/download/r-v0.0.4/r > /usr/bin/r && \
     chmod +x /usr/bin/r && \
-    curl -sLf https://get.docker.com/builds/Linux/x86_64/docker-1.10.3 > /usr/bin/docker && \
+
+    git clone https://github.com/hypriot/rpi-docker-builder.git \
+    cd rpi-docker-builder \
+    sudo sh build.sh \
+    sudo sh run-builder.sh \
     chmod +x /usr/bin/docker && \
+
     rm /var/run && \
     mkdir /var/run && \
     curl -sLf https://raw.githubusercontent.com/rancher/rancher/${SSL_SCRIPT_COMMIT}/server/bin/update-rancher-ssl > /usr/bin/update-rancher-ssl && \
