@@ -34,7 +34,7 @@ RUN apt-get update && \
     curl -sLf https://raw.githubusercontent.com/rancher/rancher/${SSL_SCRIPT_COMMIT}/server/bin/update-rancher-ssl > /usr/bin/update-rancher-ssl && \
     chmod +x /usr/bin/update-rancher-ssl
 
-RUN apt-get update && apt-get install lxc aufs-tools cgroup-lite apparmor docker.io && \
+RUN apt-get update && apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io && \
 
 
 ENTRYPOINT ["/rancher-entrypoint.sh"]
