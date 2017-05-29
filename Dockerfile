@@ -29,20 +29,12 @@ RUN apt-get update && \
     chmod +x /usr/bin/share-mnt && \
     curl -sL https://github.com/rancher/weave/releases/download/r-v0.0.4/r > /usr/bin/r && \
     chmod +x /usr/bin/r && \
-
-    curl -ks https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | bash && \
-    apt-get update && \
-    apt-get install docker-hypriot=1.10.3-1 && \
-    sh -c 'usermod -aG docker $SUDO_USER' && \
-    systemctl enable docker.service && \
-    chmod +x /usr/bin/docker && \
-
     rm /var/run && \
     mkdir /var/run && \
     curl -sLf https://raw.githubusercontent.com/rancher/rancher/${SSL_SCRIPT_COMMIT}/server/bin/update-rancher-ssl > /usr/bin/update-rancher-ssl && \
     chmod +x /usr/bin/update-rancher-ssl
 
-RUN apt-get install docker-hypriot
+RUN apt-get update && apt-get install lxc aufs-tools cgroup-lite apparmor docker.io && \
 
 
 ENTRYPOINT ["/rancher-entrypoint.sh"]
