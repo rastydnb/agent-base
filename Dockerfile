@@ -16,7 +16,6 @@ RUN apt-get update && \
         jq \
         kmod \
         openssl \
-        git \
         psmisc \
         python2.7 \
         tcpdump \
@@ -31,10 +30,10 @@ RUN apt-get update && \
     curl -sL https://github.com/rancher/weave/releases/download/r-v0.0.4/r > /usr/bin/r && \
     chmod +x /usr/bin/r && \
 
-    git clone https://github.com/hypriot/rpi-docker-builder.git \
-    cd rpi-docker-builder \
-    sudo sh build.sh \
-    sudo sh run-builder.sh \
+    curl -ks https://packagecloud.io/install/repositories/Hypriot/Schatzkiste/script.deb.sh | sudo bash && \
+    sudo apt-get install docker-hypriot=1.10.3-1 && \
+    sudo sh -c 'usermod -aG docker $SUDO_USER' && \
+    sudo systemctl enable docker.service && \
     chmod +x /usr/bin/docker && \
 
     rm /var/run && \
