@@ -33,7 +33,7 @@ RUN apt-get update && \
     chmod +x /usr/bin/update-rancher-ssl
 
 ADD  share-mnt  /usr/bin/share-mnt
-RUN chmod +x /usr/bin/share-mnt && apt-get update && apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io && \
+RUN chmod +x /usr/bin/share-mnt && apt-get update && apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io
 
 
 ENTRYPOINT ["/rancher-entrypoint.sh"]
