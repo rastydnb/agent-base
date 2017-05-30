@@ -25,8 +25,6 @@ RUN apt-get update && \
     ln -s /usr/bin/python2.7 /usr/bin/python && \
     curl -s https://bootstrap.pypa.io/get-pip.py | python2.7 && \
     pip install cattle && \
-    curl -sL https://github.com/rancher/runc/releases/download/share-mnt-v0.2.1/share-mnt > /usr/bin/share-mnt && \
-    chmod +x /usr/bin/share-mnt && \
     curl -sL https://github.com/rancher/weave/releases/download/r-v0.0.4/r > /usr/bin/r && \
     chmod +x /usr/bin/r && \
     rm /var/run && \
@@ -34,7 +32,8 @@ RUN apt-get update && \
     curl -sLf https://raw.githubusercontent.com/rancher/rancher/${SSL_SCRIPT_COMMIT}/server/bin/update-rancher-ssl > /usr/bin/update-rancher-ssl && \
     chmod +x /usr/bin/update-rancher-ssl
 
-RUN apt-get update && apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io
+ADD  share-mnt  /usr/bin/share-mnt
+RUN chmod +x /usr/bin/share-mnt && apt-get update && apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io && \
 
 
 ENTRYPOINT ["/rancher-entrypoint.sh"]
